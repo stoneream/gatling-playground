@@ -13,45 +13,23 @@ inThisBuild(
   )
 )
 
-// === project info ===
-
-inThisBuild(
-  List(
-    organization := "io.github.stoneream",
-    homepage := Some(url("https://PROJECT-URL-HERE")),
-    licenses := List("LICENSE NAME HERE" -> url("https://LICENSE-URL-HERE")),
-    developers := List(
-      Developer(
-        "stoneream",
-        "Ishikawa Ryuto",
-        "ishikawa-r@protonmail.com",
-        url("https://github.com/stoneream")
-      )
-    )
-  )
-)
-
-// === publish settings ===
-
-sonatypeCredentialHost := "s01.oss.sonatype.org"
-sonatypeRepository := "https://s01.oss.sonatype.org/service/local"
-
-lazy val publishSettings = Seq(
-  publish / skip := false,
-  Test / publishArtifact := false,
-  versionScheme := Some("early-semver")
-)
-
 // === project setting ===
 
-lazy val root = (project in file(".")).settings(
-  name := "scala-template",
-  libraryDependencies ++= Dependencies.deps,
-  publish / skip := true
-)
-//  .aggregate(subProject)
+lazy val root = (project in file("."))
+  .settings(
+    name := "scala-template",
+    publish / skip := true
+  )
+  .aggregate(gatling)
 
-//lazy val subProject = (project in file("subProject")).settings(
-//  name := "subProject",
-//  publishSettings
-//)
+lazy val gatlingVersion = "3.9.5"
+
+lazy val gatling = (project in file("gatling"))
+  .enablePlugins(GatlingPlugin)
+  .settings(
+    name := "subProject",
+    libraryDependencies ++= Seq(
+      "io.gatling.highcharts" % "gatling-charts-highcharts" % gatlingVersion % "test",
+      "io.gatling" % "gatling-test-framework" % gatlingVersion % "test"
+    )
+  )
