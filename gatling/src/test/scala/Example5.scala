@@ -1,7 +1,7 @@
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 
-import scala.concurrent.duration._
+import scala.concurrent.duration.DurationInt
 
 class Example5 extends Simulation {
   val httpProtocol = http.baseUrl("http://localhost:9000").userAgentHeader("UserAgentHere")
@@ -37,4 +37,10 @@ class Example5 extends Simulation {
         .formParam("key", session => { s"${session("session-key-here")}" })
         .asFormUrlEncoded
     )
+
+  setUp(
+    scn
+      .inject(nothingFor(10.seconds))
+      .protocols(httpProtocol)
+  )
 }

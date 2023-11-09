@@ -15,4 +15,10 @@ class Example2 extends Simulation {
     .exec(pause(10.seconds))
     .exec(http("概要").get("/about"))
 
+  setUp(
+    scn1
+      .inject(nothingFor(10.seconds))
+      .protocols(httpProtocol)
+  )
+
 }

@@ -15,4 +15,9 @@ class Example4 extends Simulation {
         .check(jsonPath("$.username").saveAs("username"))
     )
 
+  setUp(
+    scn
+      .inject(nothingFor(10.seconds))
+      .protocols(httpProtocol)
+  )
 }

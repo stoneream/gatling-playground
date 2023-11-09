@@ -31,7 +31,14 @@ class Example3 extends Simulation {
       val asOption = session("key1").asOption[String]
       // 安全にアクセスできる
       val validated = session("key1").validate[String]
-      ???
+
+      session
     }
+
+  setUp(
+    scn
+      .inject(nothingFor(10.seconds))
+      .protocols(httpProtocol)
+  )
 
 }
