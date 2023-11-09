@@ -2,7 +2,7 @@
 
 inThisBuild(
   List(
-    scalaVersion := "3.3.0",
+    scalaVersion := "2.13.12",
     scalacOptions ++= List(
       "-feature",
       "-deprecation",

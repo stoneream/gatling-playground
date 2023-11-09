@@ -1,7 +1,7 @@
-import io.gatling.core.Predef.*
-import io.gatling.http.Predef.*
+import io.gatling.core.Predef._
+import io.gatling.http.Predef._
 
-import scala.concurrent.duration.*
+import scala.concurrent.duration._
 
 class Example4 extends Simulation {
   val httpProtocol = http.baseUrl("http://localhost:9000").userAgentHeader("UserAgentHere")
